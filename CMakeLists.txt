@@ -89,6 +89,14 @@ set(IP_HEADERS
   oscpack/ip/UdpSocket.h
 )
 
+
+IF(APPLE)
+  SET(CMAKE_INSTALL_NAME_DIR @executable_path)
+  SET(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
+ENDIF(APPLE)
+
+
+
 add_library(TUIO SHARED ${TUIO_SOURCES} ${OSC_SOURCES} ${TUIO_HEADERS} ${OSC_HEADERS})
 if(MSVC)
   target_link_libraries(TUIO mswsock winmm ws2_32)
